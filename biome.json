@@ -1,0 +1,71 @@
+{
+  "$schema": "https://biomejs.dev/schemas/1.7.3/schema.json",
+  "organizeImports": {
+    "enabled": true
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true,
+      "a11y": {
+        "noAccessKey": "off",
+        "noAriaHiddenOnFocusable": "off",
+        "noAutofocus": "off",
+        "noBlankTarget": "off",
+        "noDistractingElements": "off",
+        "noHeaderScope": "off",
+        "noInteractiveElementToNoninteractiveRole": "off",
+        "noNoninteractiveElementToInteractiveRole": "off",
+        "noNoninteractiveTabindex": "off",
+        "noPositiveTabindex": "off",
+        "noRedundantAlt": "off",
+        "noRedundantRoles": "off",
+        "noSvgWithoutTitle": "off",
+        "useAltText": "off",
+        "useAnchorContent": "off",
+        "useAriaPropsForRole": "off",
+        "useButtonType": "off",
+        "useHeadingContent": "off",
+        "useHtmlLang": "off",
+        "useIframeTitle": "off",
+        "useKeyWithClickEvents": "off",
+        "useKeyWithMouseEvents": "off",
+        "useMediaCaption": "off",
+        "useValidAnchor": "off",
+        "useValidAriaProps": "off",
+        "useValidAriaRole": "off",
+        "useValidAriaValues": "off",
+        "useValidLang": "off"
+      },
+      "nursery": {
+        "useSortedClasses": "off"
+      }
+    }
+  },
+  "formatter": {
+    "enabled": true,
+    "formatWithErrors": true,
+    "ignore": [],
+    "attributePosition": "auto",
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineEnding": "lf",
+    "lineWidth": 120
+  },
+  "javascript": {
+    "formatter": {
+      "arrowParentheses": "always",
+      "bracketSameLine": false,
+      "bracketSpacing": true,
+      "jsxQuoteStyle": "double",
+      "quoteProperties": "asNeeded",
+      "semicolons": "always",
+      "trailingComma": "all"
+    }
+  },
+  "json": {
+    "formatter": {
+      "trailingCommas": "none"
+    }
+  }
+}
