@@ -1,6 +1,6 @@
 import React from "react";
 
-import type { IServerCard } from "@/data";
+import type { IServerCard } from "@/interfaces";
 
 export function ServerCard({ title, iconSrc, members, votes, language, tags, description }: IServerCard) {
   return (
