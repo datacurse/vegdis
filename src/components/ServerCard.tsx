@@ -2,7 +2,7 @@ import React from "react";
 
 import type { IServerCard } from "@/interfaces";
 
-export function ServerCard({ title, iconSrc, members, votes, language, tags, description }: IServerCard) {
+export function ServerCard({ title, inviteLink, iconSrc, members, votes, language, tags, description }: IServerCard) {
   return (
     <article className="relative col-span-4 w-full overflow-hidden rounded-md p-3">
       <div className="relative z-10 space-y-3">
@@ -30,9 +30,9 @@ export function ServerCard({ title, iconSrc, members, votes, language, tags, des
             </a>
             <div className="flex items-center space-x-2 text-sm text-medium">
               <span className="uppercase">{language}</span>
-              <div className="bg-medium h-1 w-1 rounded-full"/>
+              <div className="bg-medium h-1 w-1 rounded-full" />
               <span>{members.total.toLocaleString()} members</span>
-              <div className="bg-medium h-1 w-1 rounded-full"/>
+              <div className="bg-medium h-1 w-1 rounded-full" />
               <span>{votes} votes</span>
             </div>
           </div>
@@ -58,12 +58,20 @@ export function ServerCard({ title, iconSrc, members, votes, language, tags, des
               </div>
             </div>
           </a>
-          <a className="w-full" target="_blank" href={`/server/${title.toLowerCase().replace(/\s+/g, "-")}/join`}>
-            <div className="flex w-full items-center justify-center rounded-md border border-transparent bg-primary-400 px-4 py-1 font-medium text-high text-sm uppercase ring-surface-8 transition duration-300 ease-in-out hover:bg-primary-500 focus:outline-none focus:ring-1">
-              <div className="flex items-center space-x-1">
-                <span>join</span>
+          <a className="w-full" target="_blank" href={inviteLink}>
+            {inviteLink !== "" ? (
+              <div className="flex w-full items-center justify-center rounded-md border border-transparent bg-primary-400 px-4 py-1 font-medium text-high text-sm uppercase ring-surface-8 transition duration-300 ease-in-out hover:bg-primary-500 focus:outline-none focus:ring-1">
+                <div className="flex items-center space-x-1">
+                  <span>join</span>
+                </div>
               </div>
-            </div>
+            ) : (
+                <div className="flex w-full items-center justify-center rounded-md border border-transparent bg-surface-4 px-4 py-1 font-medium text-high text-sm uppercase ring-surface-8 transition duration-300 ease-in-out focus:outline-none focus:ring-1">
+                <div className="flex items-center space-x-1">
+                  <span>no link yet</span>
+                </div>
+              </div>
+            )}
           </a>
         </div>
       </div>
