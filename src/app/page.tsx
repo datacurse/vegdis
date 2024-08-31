@@ -1,8 +1,13 @@
+"use server";
+import { readCsvFile } from "@/actions/readCsvFile";
 import { ServerCard } from "@/components/ServerCard";
-import { serverCards } from "@/data";
+import type { IServerCard } from "@/data";
 import { IoSearchOutline } from "react-icons/io5";
 
-export default function HomePage() {
+export default async function HomePage() {
+  const serversPath = "/home/loki/code/vegdis/src/servers.csv";
+  const serverCards = (await readCsvFile(serversPath)) as IServerCard[];
+
   return (
     <body
       style={{
