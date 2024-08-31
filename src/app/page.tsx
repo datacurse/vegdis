@@ -1,4 +1,6 @@
 import { ServerCard } from "@/components/ServerCard";
+import { serverCards } from "@/data";
+import { IoSearchOutline } from "react-icons/io5";
 
 export default function HomePage() {
   return (
@@ -13,8 +15,7 @@ export default function HomePage() {
       <div className="flex min-h-screen flex-col">
         <div>
           {/* text-[rgba(103,58,183,.4)] */}
-          <svg className="-z-10 pointer-events-none absolute inset-0 h-screen w-full text-[rgba(46,165,44,0.38)]"
-          >
+          <svg className="-z-10 pointer-events-none absolute inset-0 h-screen w-full text-[rgba(46,165,44,0.38)]">
             <defs>
               <linearGradient id="bg" gradientTransform="rotate(70)">
                 <stop offset="0%" stopColor="currentColor" />
@@ -90,8 +91,20 @@ export default function HomePage() {
                 </p>
               </div>
               <div>
-                <div className="flex items-center relative w-full flex-1 bg-surface-1 border border-surface-4 focus-within:border-primary-600 rounded-md transition ease-in duration-100 px-4 group">
-                  search
+                <div className="flex space-x-2 items-center relative w-full flex-1 bg-surface-1 border border-surface-4 focus-within:border-primary-400 rounded-md transition ease-in duration-100 px-4 group">
+                  <div>
+                    <IoSearchOutline className="text-high w-6 h-6" />
+                  </div>{" "}
+                  <input
+                    type="text"
+                    placeholder="Search for the top servers..."
+                    autoComplete="off"
+                    className=" py-4 w-full bg-surface-1 outline-none focus:ring-0 focus:outline-none caret-white text-white placeholder-gray-400"
+                    aria-autocomplete="list"
+                    aria-labelledby="search-label"
+                    id="search-input"
+                    value=""
+                  />
                 </div>
               </div>
               <div className="my-12 space-y-10">
@@ -101,11 +114,9 @@ export default function HomePage() {
                     <p className="text-medium">The top voted Discord servers this month</p>
                   </div>
                   <div className="grid grid-cols-4 gap-5 md:grid-cols-8 xl:grid-cols-12">
-                    <ServerCard/>
-                    <ServerCard/>
-                    <ServerCard/>
-                    <ServerCard/>
-                    <ServerCard/>
+                    {serverCards.map((serverCard) => (
+                      <ServerCard key={serverCard.title} {...serverCard} />
+                    ))}
                   </div>
                 </section>
               </div>
