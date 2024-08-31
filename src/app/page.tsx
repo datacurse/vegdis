@@ -6,8 +6,7 @@ import type { IServerCard } from "@/interfaces";
 import { IoSearchOutline } from "react-icons/io5";
 
 export default async function HomePage() {
-  const serversPath = "/home/loki/code/vegdis/src/servers.csv";
-  const serverCardsRaw = (await readCsvFile(serversPath))
+  const serverCardsRaw = await readCsvFile('servers.csv');
   const serverCards = parseServerCards(serverCardsRaw);
 
   return (
@@ -110,7 +109,6 @@ export default async function HomePage() {
                     aria-autocomplete="list"
                     aria-labelledby="search-label"
                     id="search-input"
-                    value=""
                   />
                 </div>
               </div>
