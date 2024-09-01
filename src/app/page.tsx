@@ -8,6 +8,7 @@ import { IoSearchOutline } from "react-icons/io5";
 export default async function HomePage() {
   const serverCardsRaw = await readCsvFile('servers.csv');
   const serverCards = parseServerCards(serverCardsRaw);
+  console.log(serverCards)
 
   return (
     <body
@@ -120,7 +121,7 @@ export default async function HomePage() {
                   </div>
                   <div className="grid grid-cols-4 gap-5 md:grid-cols-8 xl:grid-cols-12">
                     {serverCards.map((serverCard) => (
-                      <ServerCard key={serverCard.title} {...serverCard} />
+                      <ServerCard key={serverCard.title} serverCard={serverCard} />
                     ))}
                   </div>
                 </section>

@@ -13,6 +13,15 @@ export function parseServerCards(records: any[]): IServerCard[] {
       votes: Number.parseInt(record.votes, 10),
       language: record.language,
       tags: record.tags.split(',').map((tag: string) => tag.trim()),
-      description: record.description
+      description: record.description,
+      vcActivityLevel: record.vcActivityLevel,
+      adultsOnly: record.adultsOnly === 'TRUE',
+      sfw: record.sfw === 'TRUE',
+      safeSpace: record.safeSpace === 'TRUE',
+      nonVeganPolicy: record.nonVeganPolicy,
+      review: {
+        loki: record.review_loki,
+        cobaltcat: record.review_cobaltcat
+      }
     }));
   }
