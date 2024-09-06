@@ -1,14 +1,13 @@
 "use server";
 import { parseServerCards } from "@/actions/parseServerCard";
 import { readCsvFile } from "@/actions/readCsvFile";
-import { ServerCard } from "@/components/ServerCard";
-import type { IServerCard } from "@/interfaces";
-import { IoSearchOutline } from "react-icons/io5";
+import { SearchBar } from "@/components/SearchBar";
+import { ServerGrid } from "@/components/ServerGrid";
 
 export default async function HomePage() {
-  const serverCardsRaw = await readCsvFile('servers.csv');
+  const serverCardsRaw = await readCsvFile("servers.csv");
   const serverCards = parseServerCards(serverCardsRaw);
-  console.log(serverCards)
+  console.log(serverCards);
 
   return (
     <body
@@ -97,33 +96,14 @@ export default async function HomePage() {
                   Browse thousands of the best Discord servers available and discuss topics you are interested in
                 </p>
               </div>
-              <div>
-                <div className="flex space-x-2 items-center relative w-full flex-1 bg-surface-1 border border-surface-4 focus-within:border-primary-400 rounded-md transition ease-in duration-100 px-4 group">
-                  <div>
-                    <IoSearchOutline className="text-high w-6 h-6" />
-                  </div>{" "}
-                  <input
-                    type="text"
-                    placeholder="Search for the top servers..."
-                    autoComplete="off"
-                    className=" py-4 w-full bg-surface-1 outline-none focus:ring-0 focus:outline-none caret-white text-white placeholder-gray-400"
-                    aria-autocomplete="list"
-                    aria-labelledby="search-label"
-                    id="search-input"
-                  />
-                </div>
-              </div>
+              <SearchBar />
               <div className="my-12 space-y-10">
                 <section className="space-y-5">
                   <div>
                     <h2 className="font-bold text-2xl text-high uppercase md:text-3xl">top voted servers</h2>
                     <p className="text-medium">The top voted Discord servers this month</p>
                   </div>
-                  <div className="grid grid-cols-4 gap-5 md:grid-cols-8 xl:grid-cols-12">
-                    {serverCards.map((serverCard) => (
-                      <ServerCard key={serverCard.title} serverCard={serverCard} />
-                    ))}
-                  </div>
+                  <ServerGrid />
                 </section>
               </div>
             </main>
