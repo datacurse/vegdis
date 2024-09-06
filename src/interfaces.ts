@@ -10,9 +10,9 @@ export interface IServerCard {
   language: string;
   tags: string[];
   description: string;
-  vcActivityLevel: "active" | "semiActive" | "inactive";
+  activeVc: boolean;
   adultsOnly: boolean;
-  sfw: boolean;
+  nsfw: boolean;
   safeSpace: boolean;
   nonVeganPolicy: "permited" | "notPermitted" | "tolerated" | "bullied";
   review: {

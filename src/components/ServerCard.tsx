@@ -1,5 +1,6 @@
 import React from "react";
 import type { IServerCard } from "@/interfaces";
+import Tag from "./Tag";
 
 export function ServerCard({ serverCard }: { serverCard: IServerCard }) {
   const {
@@ -14,8 +15,8 @@ export function ServerCard({ serverCard }: { serverCard: IServerCard }) {
     adultsOnly,
     nonVeganPolicy,
     safeSpace,
-    sfw,
-    vcActivityLevel,
+    nsfw,
+    activeVc,
   } = serverCard;
 
   return (
@@ -52,38 +53,26 @@ export function ServerCard({ serverCard }: { serverCard: IServerCard }) {
             </div>
           </div>
         </div>
-        <div className="flex flex-col space-y-1">
+        <div className="flex flex-col gap-1">
           <div className="flex flex-wrap items-center gap-1">
-            <a>
-              <div className="bg-surface-4 hover:bg-surface-6 cursor-pointer transition ease-in duration-100 inline-flex items-center space-x-1 px-2 py-1 text-xs rounded-md text-high">
-                <p>{adultsOnly ? "adults only" : ""}</p>
-              </div>
-            </a>
-            <a>
-              <div className="bg-surface-4 hover:bg-surface-6 cursor-pointer transition ease-in duration-100 inline-flex items-center space-x-1 px-2 py-1 text-xs rounded-md text-high">
-                <p>{nonVeganPolicy}</p>
-              </div>
-            </a>
-            <a>
-              <div className="bg-surface-4 hover:bg-surface-6 cursor-pointer transition ease-in duration-100 inline-flex items-center space-x-1 px-2 py-1 text-xs rounded-md text-high">
-                <p>{safeSpace}</p>
-              </div>
-            </a>
-            <a>
-              <div className="bg-surface-4 hover:bg-surface-6 cursor-pointer transition ease-in duration-100 inline-flex items-center space-x-1 px-2 py-1 text-xs rounded-md text-high">
-                <p>{sfw}</p>
-              </div>
-            </a>
-            <a>
-              <div className="bg-surface-4 hover:bg-surface-6 cursor-pointer transition ease-in duration-100 inline-flex items-center space-x-1 px-2 py-1 text-xs rounded-md text-high">
-                <div>
+            {adultsOnly && (
+              <Tag className="bg-[#913838] hover:bg-[#c55151]">
+                <p>18+</p>
+              </Tag>
+            )}
+            {nsfw && (
+              <Tag className="bg-[#913838] hover:bg-[#c55151]">
+                <p>nsfw</p>
+              </Tag>
+            )}
+            {activeVc && (
+              <Tag className="bg-surface-4 hover:bg-surface-6">
+                <div className="flex flex-row space-x-1">
                   <svg
-                    className="icon_d8bfb3"
+                    className="w-4 h-4 flex-shrink-0"
                     aria-hidden="true"
                     role="img"
                     xmlns="http://www.w3.org/2000/svg"
-                    width="20"
-                    height="20"
                     fill="none"
                     viewBox="0 0 24 24"
                   >
@@ -96,20 +85,28 @@ export function ServerCard({ serverCard }: { serverCard: IServerCard }) {
                       d="M15.16 16.51c-.57.28-1.16-.2-1.16-.83v-.14c0-.43.28-.8.63-1.02a3 3 0 0 0 0-5.04c-.35-.23-.63-.6-.63-1.02v-.14c0-.63.59-1.1 1.16-.83a5 5 0 0 1 0 9.02Z"
                     />
                   </svg>
+                  <div>active VC</div>
                 </div>
-                <div>{vcActivityLevel}</div>
-              </div>
-            </a>
+              </Tag>
+            )}
+            {safeSpace && (
+              <Tag className="bg-surface-4 hover:bg-surface-6">
+                <p>safe space</p>
+              </Tag>
+            )}
+            <Tag className="bg-surface-4 hover:bg-surface-6">
+              <p>non-vegans are {nonVeganPolicy}</p>
+            </Tag>
           </div>
-          <div className="flex flex-wrap items-center gap-1">
-            {tags.map((tag) => (
-              <a key={tag} href={`/servers/tag/${tag}`}>
-                <div className="bg-surface-4 hover:bg-surface-6 cursor-pointer transition ease-in duration-100 inline-flex items-center space-x-1 px-2 py-1 text-xs rounded-md text-high">
+          {tags.length > 0 && (
+            <div className="flex flex-wrap items-center gap-1">
+              {tags.map((tag) => (
+                <Tag key={tag} href={`/servers/tag/${tag}`} className="bg-surface-4 hover:bg-surface-6">
                   <p>{tag}</p>
-                </div>
-              </a>
-            ))}
-          </div>
+                </Tag>
+              ))}
+            </div>
+          )}
         </div>
         <div className="min-h-[60px]">
           <p className="text-sm leading-5 text-high line-clamp-3">{description}</p>
