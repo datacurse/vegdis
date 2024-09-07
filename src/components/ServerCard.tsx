@@ -48,8 +48,6 @@ export function ServerCard({ serverCard }: { serverCard: IServerCard }) {
               <span className="uppercase">{language}</span>
               <div className="bg-medium h-1 w-1 rounded-full" />
               <span>{members.total.toLocaleString()} members</span>
-              <div className="bg-medium h-1 w-1 rounded-full" />
-              <span>{votes} votes</span>
             </div>
           </div>
         </div>
@@ -94,9 +92,11 @@ export function ServerCard({ serverCard }: { serverCard: IServerCard }) {
                 <p>safe space</p>
               </Tag>
             )}
-            <Tag className="bg-surface-4 hover:bg-surface-6">
-              <p>non-vegans are {nonVeganPolicy}</p>
-            </Tag>
+            {nonVeganPolicy && (
+              <Tag className="bg-surface-4 hover:bg-surface-6">
+                <p>non-vegans are {nonVeganPolicy}</p>
+              </Tag>
+            )}
           </div>
           {tags.length > 0 && (
             <div className="flex flex-wrap items-center gap-1">

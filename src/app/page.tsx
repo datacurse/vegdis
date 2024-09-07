@@ -20,7 +20,6 @@ export default async function HomePage() {
     >
       <div className="flex min-h-screen flex-col">
         <div>
-          {/* text-[rgba(103,58,183,.4)] */}
           <svg className="-z-10 pointer-events-none absolute inset-0 h-screen w-full text-[rgba(46,165,44,0.38)]">
             <defs>
               <linearGradient id="bg" gradientTransform="rotate(70)">
