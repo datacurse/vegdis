@@ -14,8 +14,8 @@ export default async function HomePage() {
       style={{
         backgroundColor: "rgb(30, 30, 34)",
         backgroundImage: "radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 0)",
-        backgroundSize: "25px 25px",
-        backgroundPosition: "-50px -50px",
+        backgroundSize: "22px 22px",
+        backgroundPosition: "-44px -44px",
       }}
     >
       <div className="flex min-h-screen flex-col">
