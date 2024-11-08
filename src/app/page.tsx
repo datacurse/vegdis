@@ -3,6 +3,7 @@ import { parseServerCards } from "@/actions/parseServerCard";
 import { readCsvFile } from "@/actions/readCsvFile";
 import { SearchBar } from "@/components/SearchBar";
 import { ServerGrid } from "@/components/ServerGrid";
+import ServerSortSelector from "@/components/ServerSortSelector";
 
 export default async function HomePage() {
   const serverCardsRaw = await readCsvFile("servers.csv");
@@ -29,25 +30,13 @@ export default async function HomePage() {
             </defs>
             <rect fill="url('#bg')" width="100%" height="100%" className="h-full w-full" />
           </svg>
-          <header className="sticky top-0 z-40 flex h-20 w-full items-center border-transparent border-b bg-transparent transition duration-200 ease-in">
+          <header className="flex h-20 w-full items-center border-transparent border-b bg-transparent transition duration-200 ease-in">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
               <nav className="flex items-center justify-between">
-                <div className="flex items-center space-x-6">
+                <div className="flex items-center">
                   <a href="/">
                     <div className="flex items-center space-x-2 text-4xl text-high font-bold">Vegdis</div>
                   </a>
-                  <ul className="hidden list-none space-x-6 md:flex">
-                    <li>
-                      <a className="text-medium capitalize hover:text-high" href="/servers">
-                        servers
-                      </a>
-                    </li>
-                    <li>
-                      <a className="text-medium capitalize hover:text-high" href="/premium">
-                        premium
-                      </a>
-                    </li>
-                  </ul>
                 </div>
                 <div className="hidden md:block">
                   <a href="/login">
@@ -87,15 +76,9 @@ export default async function HomePage() {
           </header>
           <div className="container mx-auto mb-10 flex-1 px-4 sm:px-6 lg:px-8">
             <main>
-              <div className="mb-6">
-                <h1 className="text-3xl font-bold md:text-5xl text-high">
-                  Start Exploring the Best Discord Servers Today!
-                </h1>
-                <p className="md:text-xl text-medium">
-                  Browse thousands of the best Discord servers available and discuss topics you are interested in
-                </p>
-              </div>
               <SearchBar />
+              <ServerSortSelector />
+
               <div className="my-12 space-y-10">
                 <section className="space-y-5">
                   <div>
