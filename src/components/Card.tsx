@@ -49,9 +49,17 @@ export function Card({ card }: { card: IServerCard }) {
         <div className="bg-[#383A40] text-[#D2D2D2] w-full flex items-center justify-center rounded-lg p-2">
           view
         </div>
-        <div className="bg-[#D2D2D2] text-[#383A40] w-full flex items-center justify-center rounded-lg p-2">
-          join
-        </div>
+        {card.inviteLink !== "" ? (
+          <a className="w-full" target="_blank" href={card.inviteLink}>
+            <div className="bg-[#D2D2D2] text-[#383A40] w-full flex items-center justify-center rounded-lg p-2">
+              join
+            </div>
+          </a>
+        ) : (
+          <div className="bg-[#383A40] text-[#D2D2D2] w-full flex items-center justify-center rounded-lg p-2">
+            no link yet
+          </div>
+        )}
       </div>
     </div>
   )
