@@ -10,7 +10,7 @@ export function parseServerCards(records: any[]): IServerCard[] {
     //   total: Number.parseInt(record.members_total, 10),
     //   online: Number.parseInt(record.members_online, 10),
     // },
-    members: Number.parseInt(record.memebers, 10),
+    members: Number.parseInt(record.members, 10),
     votes: Number.parseInt(record.votes, 10),
     language: record.language,
     tags: record.tags

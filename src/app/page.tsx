@@ -13,7 +13,7 @@ export default async function HomePage() {
 
   return (
     <body>
-      <div className="flex min-h-screen flex-col bg-[#111214]">
+      <div className="flex min-h-screen flex-col bg-[#111214] text-[#D2D2D2]">
         <div>
           <header className="flex h-20 w-full items-center border-transparent border-b bg-transparent transition duration-200 ease-in">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
