@@ -3,7 +3,8 @@ import type { IServerCard } from "@/interfaces";
 import { readCsvFile } from "@/actions/readCsvFile";
 import { parseServerCards } from "@/actions/parseServerCard";
 
-type SortKey = keyof IServerCard | 'members';
+// Define valid sort keys
+type SortKey = keyof Pick<IServerCard, 'members' | 'title'>;  // restrict to only the fields we want to sort by
 
 interface SortOption {
   key: SortKey;
@@ -14,7 +15,7 @@ interface SortOption {
 export const sortOptions: SortOption[] = [
   { key: 'members', label: 'Members', direction: 'desc' },
   { key: 'title', label: 'Name', direction: 'asc' },
-];
+] as const;
 
 export const state = proxy({
   allServers: [] as IServerCard[],
@@ -26,7 +27,6 @@ export const state = proxy({
     adultsOnly: false,
     nsfw: false,
   },
-  isExclusiveFilter: false,
   currentSort: sortOptions[0]!,
 });
 
@@ -55,15 +55,15 @@ export const actions = {
   },
 
   handleSort(option: SortOption) {
-    const newDirection = 
-      state.currentSort.key === option.key && 
-      state.currentSort.direction === 'asc' ? 'desc' : 'asc';
-    
+    const newDirection =
+      state.currentSort.key === option.key &&
+        state.currentSort.direction === 'asc' ? 'desc' : 'asc';
+
     state.currentSort = {
       ...option,
       direction: newDirection,
     };
-    
+
     this.applyFilters();
   },
 
@@ -76,19 +76,23 @@ export const actions = {
       const activeFilters = Object.entries(state.filters).filter(([_, value]) => value);
       if (!activeFilters.length) return matchesSearch;
 
-      const matchesFilters = state.isExclusiveFilter
-        ? activeFilters.some(([key]) => server[key as keyof IServerCard])
-        : activeFilters.every(([key]) => server[key as keyof IServerCard]);
+      const matchesFilters = activeFilters.some(([key]) => server[key as keyof IServerCard])
 
       return matchesSearch && matchesFilters;
     });
 
     filtered.sort((a, b) => {
-      const [parent, child] = state.currentSort.key.split('.');
-      const valueA = child ? a[parent][child] : a[state.currentSort.key as keyof IServerCard];
-      const valueB = child ? b[parent][child] : b[state.currentSort.key as keyof IServerCard];
-
-      return (state.currentSort.direction === 'asc' ? 1 : -1) * (valueA > valueB ? 1 : -1);
+      const valueA = a[state.currentSort.key];
+      const valueB = b[state.currentSort.key];
+      
+      if (typeof valueA === 'string' && typeof valueB === 'string') {
+        return (state.currentSort.direction === 'asc' ? 1 : -1) * 
+          valueA.localeCompare(valueB);
+      }
+      
+      // For numbers or other comparable types
+      return (state.currentSort.direction === 'asc' ? 1 : -1) * 
+        (valueA > valueB ? 1 : valueA < valueB ? -1 : 0);
     });
 
     state.filteredServers = filtered;

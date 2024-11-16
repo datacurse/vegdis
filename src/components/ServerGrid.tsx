@@ -19,7 +19,7 @@ export function ServerGrid() {
     <div className="grid grid-cols-4 gap-5 md:grid-cols-8 xl:grid-cols-12">
       {snap.filteredServers.map((serverCard, i) => (
         // <ServerCard key={serverCard.title} serverCard={state.filteredServers[i]} />
-        <Card card={state.filteredServers[i]}/>
+        <Card card={state.filteredServers[i]!}/>
       ))}
     </div>
   );
