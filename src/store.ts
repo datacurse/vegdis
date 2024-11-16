@@ -54,11 +54,6 @@ export const actions = {
     this.applyFilters();
   },
 
-  toggleFilterMode() {
-    state.isExclusiveFilter = !state.isExclusiveFilter;
-    this.applyFilters();
-  },
-
   handleSort(option: SortOption) {
     const newDirection = 
       state.currentSort.key === option.key && 

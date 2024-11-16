@@ -1,9 +1,10 @@
 "use server";
 import { parseServerCards } from "@/actions/parseServerCard";
 import { readCsvFile } from "@/actions/readCsvFile";
-import { SearchBar } from "@/components/SearchBar";
+import { Search } from "@/components/filter/Search";
 import { ServerGrid } from "@/components/ServerGrid";
-import ServerSortSelector from "@/components/ServerSortSelector";
+import Sorting from "@/components/filter/Sorting";
+import { Filters } from "@/components/filter/Filters";
 
 export default async function HomePage() {
   const serverCardsRaw = await readCsvFile("servers.csv");
@@ -35,7 +36,7 @@ export default async function HomePage() {
               <nav className="flex items-center justify-between">
                 <div className="flex items-center">
                   <a href="/">
-                    <div className="flex items-center space-x-2 text-4xl text-high font-bold">Vegdis</div>
+                    <div className="flex items-center space-x-2 text-4xl text-high font-bold">Vegan Discord Servers</div>
                   </a>
                 </div>
                 <div className="hidden md:block">
@@ -76,15 +77,16 @@ export default async function HomePage() {
           </header>
           <div className="container mx-auto mb-10 flex-1 px-4 sm:px-6 lg:px-8">
             <main>
-              <SearchBar />
-              <ServerSortSelector />
+              <Search />
+
+              <div className="flex flex-row space-x-8 mt-4">
+                <Sorting />
+                <Filters />
+              </div>
+
 
               <div className="my-12 space-y-10">
                 <section className="space-y-5">
-                  <div>
-                    <h2 className="font-bold text-2xl text-high uppercase md:text-3xl">top voted servers</h2>
-                    <p className="text-medium">The top voted Discord servers this month</p>
-                  </div>
                   <ServerGrid />
                 </section>
               </div>

@@ -5,11 +5,11 @@ import { FaChevronUp, FaChevronDown } from "react-icons/fa";
 import { useSnapshot } from 'valtio';
 import { state, actions, sortOptions } from '@/store';
 
-export default function ServerSortSelector() {
+export default function Sorting() {
   const snap = useSnapshot(state);
 
   return (
-    <div className="flex items-center gap-2 my-4">
+    <div className="flex items-center gap-2">
       <span className="text-medium text-sm">Sort by:</span>
       <div className="flex flex-wrap gap-2">
         {sortOptions.map((option) => (
