@@ -1,39 +1,29 @@
 "use client"
-
-import React from 'react';
-import { FaChevronUp, FaChevronDown } from "react-icons/fa";
 import { useSnapshot } from 'valtio';
 import { state, actions, sortOptions } from '@/store';
+import { Pill } from '@/components/Pill';
 
-export default function Sorting() {
+export function Sort() {
   const snap = useSnapshot(state);
 
   return (
-    <div className="flex items-center gap-2">
-      <span className="text-medium text-sm">Sort by:</span>
-      <div className="flex flex-wrap gap-2">
+    <div className='flex flex-row items-center space-x-4'>
+      <div className='text-[#D2D2D2] text-lg'>sort by</div>
+      <div className="flex flex-wrap items-center gap-2">
         {sortOptions.map((option) => (
           <button
             key={option.key}
             onClick={() => actions.handleSort(option)}
-            className={`
-              flex items-center gap-1 px-3 py-1.5 rounded-md text-sm
-              transition-colors duration-200
-              ${snap.currentSort.key === option.key
-                ? 'bg-primary-400 text-white'
-                : 'bg-gray-700 text-medium hover:bg-gray-600'
-              }
-            `}
+            className="focus:outline-none"
           >
-            {option.label}
-            {snap.currentSort.key === option.key && (
-              snap.currentSort.direction === 'asc'
-                ? <FaChevronUp className="w-4 h-4" />
-                : <FaChevronDown className="w-4 h-4" />
-            )}
+            <Pill
+              label={option.label}
+              active={snap.currentSort.key === option.key}
+              direction={snap.currentSort.key === option.key ? snap.currentSort.direction : undefined}
+            />
           </button>
         ))}
       </div>
     </div>
-  );
+  )
 }
