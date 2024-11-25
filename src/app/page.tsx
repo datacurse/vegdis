@@ -9,7 +9,7 @@ import { Filters } from "@/components/filter/Filters";
 export default async function HomePage() {
   const serverCardsRaw = await readCsvFile("servers.csv");
   const serverCards = parseServerCards(serverCardsRaw);
-  console.log(serverCards);
+  // console.log(serverCards);
 
   return (
     <body>
