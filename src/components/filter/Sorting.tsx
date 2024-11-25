@@ -8,7 +8,7 @@ export function Sort() {
 
   return (
     <div className='flex flex-row items-center space-x-4'>
-      <div className='text-[#D2D2D2] text-lg'>sort by</div>
+      <div className='text-text text-lg'>sort by</div>
       <div className="flex flex-wrap items-center gap-2">
         {sortOptions.map((option) => (
           <button

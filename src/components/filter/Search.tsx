@@ -8,14 +8,14 @@ export const Search: React.FC = () => {
   const snap = useSnapshot(state);
 
   return (
-    <div className="flex items-center relative w-full bg-[#232528] border border-none rounded-md px-4">
-      <IoSearchOutline className="text-[#D2D2D2] w-6 h-6" />
+    <div className="flex items-center relative w-full bg-bg2 border border-none rounded-md px-4">
+      <IoSearchOutline className="text-text w-6 h-6" />
       <input
         type="text"
         placeholder="Search for servers..."
         value={snap.searchQuery}
         onChange={(e) => actions.setSearchQuery(e.target.value)}
-        className="py-4 w-full bg-[#232528] outline-none focus:ring-0 focus:outline-none text-[#D2D2D2] placeholder-[#656A71] ml-2"
+        className="py-4 w-full bg-bg2 outline-none focus:ring-0 focus:outline-none text-text placeholder-text-shadow ml-2"
       />
     </div>
   );
