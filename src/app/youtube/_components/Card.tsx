@@ -7,7 +7,7 @@ export function Card({ channel }: { channel: IYoutubeChannel }) {
   const handleClick = (e: React.MouseEvent) => {
     const selection = window.getSelection();
     if (!selection || selection.toString().length === 0) {
-      window.location.href = `https://www.youtube.com/@${channel.handle}`;
+      window.open(`https://www.youtube.com/@${channel.handle}`, '_blank');
     }
   };
 
